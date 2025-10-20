@@ -9,22 +9,16 @@ namespace AppDoubleList_Consola
     internal class DoubleList
     {
         private Node? head;
-        private Node? lastnode;
 
         public Node? Head
         {
             get { return head; }
             set { head = value; }
         }
-        public Node? LastNode
-        {
-            get { return lastnode; }
-            set { lastnode = value; }
-        }
+       
         public DoubleList()
         {
             this.head = null;
-            this.lastnode = null;
         }
 
         public void Add(Node n)
@@ -60,7 +54,6 @@ namespace AppDoubleList_Consola
             }
             h.Next = n;
             n.Back = h;
-            lastnode = n;
         }
         public void Remove(int data)
         {
@@ -166,23 +159,31 @@ namespace AppDoubleList_Consola
             {
                 return "Empty List";
             }
-            Node? l = lastnode;
+            Node? h = head;
+            Node? last = null;
             int i = 0;
             string datas = "";
-            do
+            while (h != null)
             {
-                datas += $"Node [{i}] and " + l + Environment.NewLine;
-                l = l.Back;
+                last = h;
+                h = h.Next;
                 i++;
+            }
+            h = last;
+            i--;
+            while (h != null)
+            {
+                datas += $"Node [{i}] {h} " + Environment.NewLine;
+                h = h.Back;
+                i--;
+            }
 
-            } while (l != null);
             return datas;
         }
 
         public void Clear()
         {
             head = null;
-            lastnode = null;
         }
 
         public override string ToString()
