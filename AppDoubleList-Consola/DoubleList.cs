@@ -83,6 +83,7 @@ namespace AppDoubleList_Consola
                 if (h.Next.Data == data)
                 {
                     h.Next = h.Next.Next;
+                    h.Next.Back = h;
                     return;
                 }
                 h = h.Next;
